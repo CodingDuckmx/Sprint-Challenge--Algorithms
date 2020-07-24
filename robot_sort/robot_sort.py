@@ -92,14 +92,100 @@ class SortingRobot:
         """
         return self._light == "ON"
 
+
     def sort(self):
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+
+        # Use the light as an indicator of swaps can be made. :thinking:
+        self.set_light_on()
+
+        while self.light_is_on():
+            
+            # Set the light off to start
+            self.set_light_off()
+
+            # while can move right:
+
+            while self.can_move_right():
+
+                # In first place, the robot is in place zero, so it will pick up the item.
+
+                self.swap_item()
+
+                # Move to the following place.
+
+                self.move_right()
+
+                # Compare the item with the one held.
+                # If the held item is greater.
+                if self.compare_item() == 1:
+
+                    # Swap item and mark than a swap has been made with the light
+                    self.set_light_on()
+                    self.swap_item()
+                    # Move left
+                    self.move_left()
+                    # swap item
+                    self.swap_item()
+                    # return to last place
+                    self.move_right()
+
+                    # Return to while loop, if it can move to the right, it will.
+                    # if not, it will continue left
 
 
+
+                # If the held item is lower than the item in front
+                # or equal
+                # return the held item to its original place.
+                # return to last place
+                elif self.compare_item() != 1:
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+
+                    # Return to while loop, if it can move to the right, it will.
+                    # if not, it will continue left
+
+
+            while self.can_move_left():
+
+                # In first place, it will pick up a item.
+
+                self.swap_item()
+
+                # Move left.
+                
+                self.move_left()
+
+                # Compare the item with the one held.
+                # If the held item is lower.
+                if self.compare_item() == - 1:
+
+                    # Swap item and mark than a swap has been made with the light
+                    self.set_light_on()
+                    self.swap_item()
+                    # Move left
+                    self.move_right()
+                    # swap item
+                    self.swap_item()
+                    # return to last place
+                    self.move_left()
+
+
+                # If the held item is greater than the item in front
+                # or equal
+                # return the held item to its original place.
+                # return to last place
+                elif self.compare_item() != -1:
+                    self.move_right()
+                    self.swap_item()
+                    self.move_left()
+
+
+    
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
