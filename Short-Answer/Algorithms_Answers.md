@@ -76,7 +76,7 @@ The time complexity of this is O(n) because in the worst scenario, no egg gets b
 
 broken = False
 numer_of_floor = 0
-
+```
 while numer_of_floor <= n and  not broken:
 
     throw the egg
@@ -88,3 +88,4 @@ while numer_of_floor <= n and  not broken:
     
     else:
         numer_of_floor += 1
+```
